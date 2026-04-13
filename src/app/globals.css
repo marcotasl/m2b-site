@@ -290,6 +290,20 @@ body {
   box-shadow: 0 18px 40px -20px rgba(33, 39, 65, 0.35);
 }
 
+/* FlowLines — fluxo de fluido nos dutos */
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+.flow-dash {
+  animation-name: flow-dash;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: stroke-dashoffset;
+}
+
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

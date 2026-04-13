@@ -1,4 +1,5 @@
 import Image from "next/image";
+import FlowLines from "./FlowLines";
 
 type Variant = "a" | "b";
 
@@ -34,6 +35,12 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
         <div
           className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-navy to-transparent"
           aria-hidden
+        />
+        <FlowLines
+          className="absolute inset-0 w-full h-full text-white/25 mix-blend-screen"
+          speed={18}
+          pipeOpacity={0.03}
+          flowOpacity={0.18}
         />
       </div>
 

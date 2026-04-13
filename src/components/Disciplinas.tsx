@@ -9,6 +9,7 @@ import {
   ClipboardCheck,
   type LucideIcon,
 } from "lucide-react";
+import FlowLines from "./FlowLines";
 
 type Disciplina = {
   t: string;
@@ -62,13 +63,17 @@ const disciplinas: Disciplina[] = [
 export default function Disciplinas() {
   return (
     <section id="disciplinas" className="relative py-20 lg:py-28 bg-navy overflow-hidden">
+      <FlowLines className="absolute inset-0 w-full h-full text-white/30" speed={16} pipeOpacity={0.045} flowOpacity={0.22} />
       <div
-        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        className="absolute -top-1/4 -right-1/4 w-[110%] h-[160%] pointer-events-none"
         style={{
-          backgroundImage: "url('/pattern.svg')",
-          backgroundSize: "640px auto",
-          backgroundRepeat: "repeat",
-          transform: "rotate(-18deg) scale(1.4)",
+          backgroundImage: "url('/logos/m2b-vert-branco.svg')",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          filter: "blur(60px)",
+          opacity: 0.14,
+          transform: "rotate(-8deg)",
         }}
         aria-hidden
       />

@@ -54,7 +54,7 @@ export default function Header() {
       >
         <div className="container-site flex items-center justify-between h-20">
           <a href="#top" aria-label="M2B — Início" className="relative z-[60]">
-            <Logo variant="light" height={32} />
+            <Logo variant="light" height={44} />
           </a>
 
           <nav className="hidden lg:flex items-center gap-7">
@@ -107,14 +107,16 @@ export default function Header() {
         style={{ height: "100dvh" }}
         aria-hidden={!open}
       >
-        {/* Pattern de fundo sutil */}
+        {/* Logo M2B gigante desfocado como ambiência */}
         <div
-          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          className="absolute -top-1/4 -right-1/3 w-[140%] h-[140%] pointer-events-none"
           style={{
-            backgroundImage: "url('/pattern.svg')",
-            backgroundSize: "640px auto",
-            backgroundRepeat: "repeat",
-            transform: "rotate(-18deg) scale(1.4)",
+            backgroundImage: "url('/logos/m2b-vert-branco.svg')",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            filter: "blur(64px)",
+            opacity: 0.18,
           }}
           aria-hidden
         />

@@ -1,13 +1,19 @@
+import FlowLines from "./FlowLines";
+
 export default function CTAFinal() {
   return (
     <section id="contato" className="relative py-20 lg:py-28 bg-navy overflow-hidden">
+      <FlowLines className="absolute inset-0 w-full h-full text-white/30" speed={15} pipeOpacity={0.045} flowOpacity={0.25} />
       <div
-        className="absolute inset-0 opacity-[0.06] pointer-events-none"
+        className="absolute -top-1/3 -left-1/4 w-[120%] h-[170%] pointer-events-none"
         style={{
-          backgroundImage: "url('/pattern.svg')",
-          backgroundSize: "640px auto",
-          backgroundRepeat: "repeat",
-          transform: "rotate(-18deg) scale(1.4)",
+          backgroundImage: "url('/logos/m2b-vert-branco.svg')",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          filter: "blur(64px)",
+          opacity: 0.15,
+          transform: "rotate(6deg)",
         }}
         aria-hidden
       />
