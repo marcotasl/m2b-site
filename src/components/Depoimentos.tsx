@@ -1,18 +1,18 @@
 const depoimentos = [
   {
-    q: "A compatibilização BIM da M2B reduziu ajustes em campo e acelerou a aprovação do projeto.",
-    a: "Ana Souza",
-    r: "Eng. de Obras, Construtora Alfa",
+    q: "A equipe da M2B é parceira de longa data. Tem profissionais muito qualificados, comprometidos com os prazos pactuados, apresentam soluções eficientes e têm bastante interação com as demais disciplinas.",
+    a: "Leonardo de Castro Alves",
+    r: "Diretor, AORB Evolução Construtiva",
   },
   {
-    q: "Entrega técnica impecável e documentação completa, facilitando a operação do empreendimento.",
-    a: "Bruno Lima",
-    r: "Facilities, Grupo Ômega",
+    q: "Quase 10 anos de parceria com a M2B e é notável a evolução e melhoria contínua. A integração técnica dos projetos em BIM agrega muito valor, trazendo maior assertividade e segurança às nossas obras.",
+    a: "Dihana Tiemi Kanda",
+    r: "Gerente de Produto e Projetos, Tapajós Engenharia",
   },
   {
-    q: "Equipe ágil e precisa. O suporte no comissionamento fez toda a diferença.",
-    a: "Carla Ribeiro",
-    r: "Arquitetura, Studio CR",
+    q: "Atrás de um grande homem, Marcus Basílio, também há uma grande Empresa — pela estrutura funcional, conhecimento técnico, responsabilidade e qualidade ao conceber, compatibilizar e acompanhar seus projetos em execução.",
+    a: "Paulo D'Arienzo",
+    r: "Diretor, PAR Gestão / PARARQ",
   },
 ];
 

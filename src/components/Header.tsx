@@ -173,8 +173,8 @@ export default function Header() {
 
           <div className="container-site pb-8 pt-4 border-t border-white/10">
             <p className="text-white/55 text-[13px]">
-              <a href="mailto:contato@m2bprojetos.com.br" className="hover:text-orange transition-colors">
-                contato@m2bprojetos.com.br
+              <a href="mailto:marcus@m2bprojetos.com.br" className="hover:text-orange transition-colors">
+                marcus@m2bprojetos.com.br
               </a>
             </p>
             <p className="text-white/40 text-[12px] mt-1">Atendimento em todo o Brasil</p>

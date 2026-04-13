@@ -15,8 +15,8 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 gap-8 text-[14px]">
           <div>
             <div className="eyebrow text-white mb-4">Contato</div>
-            <a href="mailto:contato@m2bprojetos.com.br" className="block hover:text-orange transition-colors">
-              contato@m2bprojetos.com.br
+            <a href="mailto:marcus@m2bprojetos.com.br" className="block hover:text-orange transition-colors">
+              marcus@m2bprojetos.com.br
             </a>
             <p className="mt-2 text-white/55">Atendimento em todo o Brasil</p>
           </div>
