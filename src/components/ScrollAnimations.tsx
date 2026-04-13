@@ -16,12 +16,17 @@ gsap.registerPlugin(ScrollTrigger);
  *   [data-parallax="0.2"]        → parallax no scroll (valor = velocidade)
  *   [data-count-to="29"]         → conta até o valor quando entra na viewport
  *   [data-hero-zoom="true"]      → ken burns no background do hero
+ *
+ * Todas as animações de entrada usam `clearProps` no fim — o GSAP remove
+ * os inline styles para que CSS (ex: hover, layout) volte a mandar.
  */
 export default function ScrollAnimations() {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+
+    const CLEAR = "opacity,transform,y,scale,willChange";
 
     const ctx = gsap.context(() => {
       // Fade-up
@@ -31,6 +36,7 @@ export default function ScrollAnimations() {
           y: prefersReducedMotion ? 0 : 28,
           duration: 0.9,
           ease: "power3.out",
+          clearProps: CLEAR,
           scrollTrigger: {
             trigger: el,
             start: "top 88%",
@@ -45,6 +51,7 @@ export default function ScrollAnimations() {
           opacity: 0,
           duration: 1,
           ease: "power2.out",
+          clearProps: CLEAR,
           scrollTrigger: {
             trigger: el,
             start: "top 90%",
@@ -60,6 +67,7 @@ export default function ScrollAnimations() {
           scale: prefersReducedMotion ? 1 : 0.94,
           duration: 0.9,
           ease: "power3.out",
+          clearProps: CLEAR,
           scrollTrigger: {
             trigger: el,
             start: "top 88%",
@@ -68,7 +76,9 @@ export default function ScrollAnimations() {
         });
       });
 
-      // Stagger (containers)
+      // Stagger (containers) — cria uma timeline por container para que o
+      // clearProps execute em TODOS os filhos ao final, prevenindo inline
+      // styles residuais que bagunçam alinhamento / hover
       gsap.utils.toArray<HTMLElement>("[data-stagger='true']").forEach((el) => {
         const children = Array.from(el.children) as HTMLElement[];
         gsap.from(children, {
@@ -77,6 +87,7 @@ export default function ScrollAnimations() {
           duration: 0.7,
           ease: "power3.out",
           stagger: 0.08,
+          clearProps: CLEAR,
           scrollTrigger: {
             trigger: el,
             start: "top 85%",
@@ -103,26 +114,24 @@ export default function ScrollAnimations() {
       }
 
       // Count up
-      gsap.utils
-        .toArray<HTMLElement>("[data-count-to]")
-        .forEach((el) => {
-          const end = parseFloat(el.dataset.countTo ?? "0");
-          const suffix = el.dataset.countSuffix ?? "";
-          const state = { val: 0 };
-          gsap.to(state, {
-            val: end,
-            duration: 1.6,
-            ease: "power2.out",
-            onUpdate: () => {
-              el.textContent = Math.round(state.val) + suffix;
-            },
-            scrollTrigger: {
-              trigger: el,
-              start: "top 90%",
-              toggleActions: "play none none none",
-            },
-          });
+      gsap.utils.toArray<HTMLElement>("[data-count-to]").forEach((el) => {
+        const end = parseFloat(el.dataset.countTo ?? "0");
+        const suffix = el.dataset.countSuffix ?? "";
+        const state = { val: 0 };
+        gsap.to(state, {
+          val: end,
+          duration: 1.6,
+          ease: "power2.out",
+          onUpdate: () => {
+            el.textContent = Math.round(state.val) + suffix;
+          },
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
         });
+      });
 
       // Hero Ken Burns
       if (!prefersReducedMotion) {
