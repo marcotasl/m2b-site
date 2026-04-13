@@ -28,9 +28,7 @@ const disciplinas = [
     t: "Pluvial",
     d: "Captação, drenagem superficial, de cortinas e de lençol freático para máxima proteção.",
     icon: (
-      <>
-        <path d="M12 3 C8 10 6 13 6 16 a6 6 0 0 0 12 0 c0 -3 -2 -6 -6 -13 z" />
-      </>
+      <path d="M12 3 C8 10 6 13 6 16 a6 6 0 0 0 12 0 c0 -3 -2 -6 -6 -13 z" />
     ),
   },
   {
@@ -44,9 +42,7 @@ const disciplinas = [
     t: "Prevenção e Combate a Incêndio",
     d: "PPCI e sistemas completos para aprovação no Corpo de Bombeiros e projetos executivos.",
     icon: (
-      <>
-        <path d="M12 2 c3 4 6 7 6 12 a6 6 0 0 1 -12 0 c0 -3 2 -5 3 -7 c0 2 1 3 2 3 c1 -3 1 -6 1 -8 z" />
-      </>
+      <path d="M12 2 c3 4 6 7 6 12 a6 6 0 0 1 -12 0 c0 -3 2 -5 3 -7 c0 2 1 3 2 3 c1 -3 1 -6 1 -8 z" />
     ),
   },
   {
@@ -73,23 +69,21 @@ const disciplinas = [
 
 export default function Disciplinas() {
   return (
-    <section id="disciplinas" className="relative py-24 lg:py-36 bg-navy overflow-hidden">
+    <section id="disciplinas" className="relative py-20 lg:py-28 bg-navy overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.05] pointer-events-none"
         style={{
           backgroundImage: "url('/pattern.svg')",
-          backgroundSize: "720px auto",
+          backgroundSize: "640px auto",
           backgroundRepeat: "repeat",
           transform: "rotate(-18deg) scale(1.4)",
         }}
         aria-hidden
       />
       <div className="container-site relative">
-        <div className="max-w-3xl mb-16">
-          <p className="text-orange font-medium tracking-[0.25em] uppercase text-xs mb-5">
-            Disciplinas
-          </p>
-          <h2 className="h-display text-white text-4xl lg:text-6xl">
+        <div className="max-w-2xl mb-12 lg:mb-16">
+          <p className="eyebrow text-orange mb-5">Disciplinas</p>
+          <h2 className="h2 text-white">
             Soluções completas em <span className="text-orange">instalações prediais</span>.
           </h2>
         </div>
@@ -98,15 +92,15 @@ export default function Disciplinas() {
           {disciplinas.map((d) => (
             <article
               key={d.t}
-              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-7 hover:border-orange/60 hover:bg-white/[0.05] transition-all"
+              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 lg:p-7 hover:border-orange/60 hover:bg-white/[0.05] transition-all"
             >
-              <div className="w-12 h-12 rounded-xl bg-orange/10 border border-orange/30 flex items-center justify-center text-orange mb-5 group-hover:bg-orange group-hover:text-white transition-colors">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-11 h-11 rounded-xl bg-orange/10 border border-orange/30 flex items-center justify-center text-orange mb-5 group-hover:bg-orange group-hover:text-white transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   {d.icon}
                 </svg>
               </div>
-              <h3 className="h-display text-white text-xl lg:text-2xl mb-3">{d.t}</h3>
-              <p className="text-white/65 text-sm leading-relaxed">{d.d}</p>
+              <h3 className="h3 text-white mb-2.5">{d.t}</h3>
+              <p className="text-white/65 text-[14px] leading-[1.55]">{d.d}</p>
             </article>
           ))}
         </div>

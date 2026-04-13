@@ -32,22 +32,22 @@ export default function Header() {
     >
       <div className="container-site flex items-center justify-between h-20">
         <a href="#top" aria-label="M2B — Início">
-          <Logo variant="light" />
+          <Logo variant="light" height={32} />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-white/80 hover:text-orange text-sm font-medium tracking-wide transition-colors"
+              className="text-white/80 hover:text-orange text-[14px] font-medium tracking-wide transition-colors"
             >
               {l.label}
             </a>
           ))}
           <a
             href="#contato"
-            className="ml-2 inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-5 py-2.5 text-white text-sm font-medium tracking-wide transition-colors"
+            className="ml-2 inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-5 py-2.5 text-white text-[14px] font-medium tracking-wide transition-colors"
           >
             Solicitar Orçamento
           </a>
@@ -60,7 +60,7 @@ export default function Header() {
           aria-label="Menu"
           aria-expanded={open}
         >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? (
               <path d="M6 6 L18 18 M18 6 L6 18" strokeLinecap="round" />
             ) : (

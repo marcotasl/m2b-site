@@ -23,31 +23,29 @@ const steps = [
 
 export default function Processo() {
   return (
-    <section id="processo" className="relative py-24 lg:py-36 bg-off-white">
+    <section id="processo" className="relative py-20 lg:py-28 bg-off-white">
       <div className="container-site">
-        <div className="max-w-3xl mb-16">
-          <p className="text-orange font-medium tracking-[0.25em] uppercase text-xs mb-5">
-            Como trabalhamos
-          </p>
-          <h2 className="h-display text-navy text-4xl lg:text-6xl">
+        <div className="max-w-2xl mb-12 lg:mb-16">
+          <p className="eyebrow text-orange mb-5">Como trabalhamos</p>
+          <h2 className="h2 text-navy">
             Um processo técnico, previsível e <span className="text-orange">sem retrabalho</span>.
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 relative">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-4">
           {steps.map((s, i) => (
             <div key={s.n} className="relative">
-              <div className="h-full rounded-2xl bg-white border border-navy/10 p-7 lg:p-8">
-                <div className="flex items-start justify-between mb-6">
-                  <span className="h-display text-orange text-5xl lg:text-6xl">{s.n}</span>
+              <div className="h-full rounded-2xl bg-white border border-navy/10 p-6 lg:p-7">
+                <div className="flex items-start justify-between mb-5">
+                  <span className="stat text-orange">{s.n}</span>
                   {i < steps.length - 1 && (
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-navy/20 mt-2 hidden lg:block">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-navy/20 mt-2 hidden lg:block">
                       <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   )}
                 </div>
-                <h3 className="h-display text-navy text-xl lg:text-2xl mb-3">{s.t}</h3>
-                <p className="text-navy/65 text-sm leading-relaxed">{s.d}</p>
+                <h3 className="h3 text-navy mb-2.5">{s.t}</h3>
+                <p className="text-navy/65 text-[14px] leading-[1.55]">{s.d}</p>
               </div>
             </div>
           ))}
