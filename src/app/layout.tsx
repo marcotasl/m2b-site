@@ -9,14 +9,14 @@ export const metadata: Metadata = {
     template: "%s | M2B Projetos",
   },
   description:
-    "29 anos de experiência em projetos e consultoria de instalações prediais, 100% em plataforma BIM. Hidráulica, piscinas, sanitário, pluvial, gás, PPCI e aquecimento.",
+    "30 anos de experiência em projetos e consultoria de instalações prediais, 100% em plataforma BIM. Hidráulica, piscinas, sanitário, pluvial, gás, PPCI e aquecimento.",
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: "M2B Projetos",
     title: "M2B Projetos — Instalações Prediais com Alto Desempenho em BIM",
     description:
-      "Projetos 100% BIM para obras seguras, eficientes e sem retrabalho. 29 anos de atuação.",
+      "Projetos 100% BIM para obras seguras, eficientes e sem retrabalho. 30 anos de atuação.",
   },
   twitter: {
     card: "summary_large_image",

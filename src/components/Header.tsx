@@ -55,7 +55,11 @@ export default function Header() {
       >
         <div className="container-site flex items-center justify-between h-20">
           <a href="#top" aria-label="M2B — Início" className="relative z-[60]">
-            <Logo variant="light" height={44} />
+            <Logo
+              variant="light"
+              height={scrolled ? 52 : 62}
+              className="transition-all duration-300"
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-7">

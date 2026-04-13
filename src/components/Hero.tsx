@@ -8,7 +8,10 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
   const heroSrc = variant === "b" ? "/hero/hero-b.jpg" : "/hero/hero-a.jpg";
 
   return (
-    <section id="top" className="relative bg-navy overflow-hidden">
+    <section
+      id="top"
+      className="relative bg-navy overflow-hidden flex items-center min-h-[92svh] sm:min-h-[88svh] lg:min-h-[94svh]"
+    >
       {/* Imagem de fundo com Ken Burns + parallax */}
       <div className="absolute inset-0 overflow-hidden">
         <div data-hero-zoom="true" className="absolute inset-0">
@@ -45,7 +48,7 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
         />
       </div>
 
-      <div className="container-site relative pt-36 pb-20 lg:pt-48 lg:pb-28">
+      <div className="container-site relative w-full pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24">
         <div className="max-w-3xl">
           <p
             data-anim="fade-up"
@@ -55,7 +58,7 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
               <span className="absolute inset-0 rounded-full bg-orange animate-pulse-dot" />
               <span className="absolute inset-0 rounded-full bg-orange" />
             </span>
-            29 anos de engenharia de instalações
+            30 anos de engenharia de instalações
           </p>
 
           <h1 data-anim="fade-up" className="h1 text-white">
@@ -63,7 +66,7 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
           </h1>
 
           <p data-anim="fade-up" className="lead mt-7 text-white/80 max-w-2xl">
-            Total experiência em tecnologia <strong className="text-white font-medium">BIM</strong> para entregar obras seguras, eficientes e sem retrabalho.
+            30 anos de atuação e com total experiência na tecnologia <strong className="text-white font-medium">BIM</strong> para entregar obras seguras, eficientes e sem retrabalho.
           </p>
 
           <div data-anim="fade-up" className="mt-9 flex flex-wrap gap-3">
@@ -96,7 +99,7 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
           className="mt-16 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-white/15 pt-10"
         >
           {[
-            { n: 29, suffix: "", l: "anos de atuação" },
+            { n: 30, suffix: "", l: "anos de atuação" },
             { n: 100, suffix: "%", l: "projetos em BIM" },
             { n: 8, suffix: "", l: "disciplinas integradas" },
             { n: null, label: "BR", l: "atendimento nacional" },

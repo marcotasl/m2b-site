@@ -47,7 +47,7 @@ export default function CTAFinal() {
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-7 lg:p-8">
             <div className="eyebrow text-orange mb-4">Nossa história</div>
             <p className="text-white/75 text-[15px] leading-[1.7]">
-              A M2B Projetos foi fundada em 2018, fruto de uma jornada profissional iniciada em 1996. <strong className="text-white font-medium">Marcus Marques Basílio</strong> — Arquiteto, pós-graduado em Gerenciamento de Projetos de Engenharia, especialista em Gerenciamento Ágil e Técnico em Edificações — tornou-se referência em Instalações Hidrossanitárias há mais de duas décadas.
+              A M2B Projetos foi fundada em 2018, fruto profissional de uma jornada de 22 anos que antecede seu início. <strong className="text-white font-medium">Marcus Marques Basílio</strong> — Arquiteto, pós-graduado em Gerenciamento de Projetos de Engenharia, especialista em Gerenciamento Ágil e Técnico em Edificações — aprofundou e se tornou especialista em Instalações Hidrossanitárias a partir de 1996.
             </p>
             <p className="mt-4 text-white/75 text-[15px] leading-[1.7]">
               Hoje a M2B integra o <strong className="text-white font-medium">Grupo Bimconnect Engenharia Integrada</strong> e atende projetos de instalações em todo o Brasil.

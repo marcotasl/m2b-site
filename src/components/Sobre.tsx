@@ -5,7 +5,7 @@ export default function Sobre() {
         <div className="lg:col-span-5" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Sobre a M2B</p>
           <h2 className="h2 text-navy">
-            Engenharia de instalações que garante <span className="text-orange">resultados.</span>
+            Engenharia de Instalações Prediais que garantem <span className="text-orange">resultados.</span>
           </h2>
         </div>
 
@@ -14,13 +14,13 @@ export default function Sobre() {
           className="lg:col-span-7 space-y-5 body-md text-navy/75"
         >
           <p>
-            A M2B entrega soluções completas em projetos e consultoria de instalações prediais, atuando em sistemas <strong className="text-navy font-medium">hidráulicos, piscinas, sanitários, pluviais, gás predial, aquecimento coletivo e prevenção e combate a incêndio</strong>.
+            A M2B entrega soluções completas em projetos e consultoria para instalações prediais, atuando em sistemas <strong className="text-navy font-medium">hidráulicos, piscinas, sanitários, pluviais, gás predial, aquecimento coletivo e prevenção e combate a incêndio</strong>.
           </p>
           <p>
             Todos os projetos são desenvolvidos <strong className="text-navy font-medium">100% em plataforma BIM</strong>, permitindo compatibilização precisa entre disciplinas, detecção antecipada de interferências e economia de tempo e recursos.
           </p>
           <p>
-            Com equipe técnica sênior e mais de 29 anos de atuação, unimos conhecimento prático, domínio normativo e tecnologia de ponta para garantir obras seguras, eficientes e dentro do prazo.
+            Com uma equipe técnica sênior e mais de 30 anos de atuação, unimos conhecimento prático, domínio normativo e tecnologia de ponta para garantir obras seguras, eficientes e dentro do prazo através de soluções de projetos completas.
           </p>
         </div>
       </div>

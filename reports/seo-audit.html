@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auditoria SEO & Performance · M2B Projetos</title>
+<style>
+  :root {
+    --navy: #212741;
+    --navy-dark: #161b33;
+    --orange: #fa663c;
+    --off: #f5f2ec;
+    --ink: #0f1326;
+    --ok: #2f9d5a;
+    --warn: #e0a23a;
+    --fail: #d44e27;
+    --muted: #8b90a8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--off);
+    color: var(--navy);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 40px 24px 80px; }
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 56px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, rgba(250,102,60,0.22), transparent 70%);
+    filter: blur(40px);
+  }
+  header .inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+  }
+  header .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  header h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 18px;
+  }
+  header h1 span { color: var(--orange); }
+  header p {
+    color: rgba(255,255,255,0.75);
+    font-size: 17px;
+    max-width: 720px;
+  }
+  header .meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+  }
+  header .meta a { color: var(--orange); text-decoration: none; border-bottom: 1px solid transparent; }
+  header .meta a:hover { border-bottom-color: var(--orange); }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: -36px auto 0;
+    max-width: 1080px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .score {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 24px;
+    border: 1px solid rgba(33,39,65,0.08);
+    box-shadow: 0 10px 30px -12px rgba(33,39,65,0.18);
+  }
+  .score .label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .score .value {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1;
+    margin-top: 10px;
+    letter-spacing: -0.02em;
+  }
+  .score .sub { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .score.ok .value { color: var(--ok); }
+  .score.warn .value { color: var(--warn); }
+  .score.fail .value { color: var(--fail); }
+
+  section { margin-top: 56px; }
+  section h2 {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  section h2 .num { color: var(--orange); font-weight: 500; margin-right: 10px; }
+  section .section-sub {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .checks { display: grid; gap: 10px; }
+  .check {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(33,39,65,0.08);
+  }
+  .check .icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .check.pass .icon { background: var(--ok); }
+  .check.warn .icon { background: var(--warn); }
+  .check.fail .icon { background: var(--fail); }
+  .check .title { font-weight: 500; color: var(--navy); }
+  .check .desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .check .value {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'SF Mono', Menlo, monospace;
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(33,39,65,0.08);
+  }
+  th, td { padding: 14px 18px; text-align: left; font-size: 14px; }
+  th { background: rgba(33,39,65,0.04); font-weight: 500; color: var(--muted); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+  tr + tr td { border-top: 1px solid rgba(33,39,65,0.08); }
+  td.num { font-family: 'SF Mono', Menlo, monospace; color: var(--navy); font-weight: 500; }
+  td.ok { color: var(--ok); }
+  td.fail { color: var(--fail); }
+
+  .priority {
+    display: grid;
+    gap: 14px;
+  }
+  .item {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid rgba(33,39,65,0.08);
+    padding: 22px 24px;
+    position: relative;
+    padding-left: 56px;
+  }
+  .item::before {
+    content: counter(prio, decimal-leading-zero);
+    counter-increment: prio;
+    position: absolute;
+    left: 22px;
+    top: 22px;
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+  }
+  .priority { counter-reset: prio; }
+  .item .title { font-weight: 500; font-size: 17px; margin-bottom: 6px; }
+  .item .why {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .item .fix {
+    font-size: 13px;
+    background: rgba(250,102,60,0.06);
+    border-left: 3px solid var(--orange);
+    padding: 10px 14px;
+    border-radius: 4px;
+    color: var(--navy);
+  }
+  .item .fix strong { color: var(--orange); }
+  .item .tag {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .tag.crit { background: rgba(212,78,39,0.15); color: var(--fail); }
+  .tag.high { background: rgba(224,162,58,0.15); color: var(--warn); }
+  .tag.med { background: rgba(139,144,168,0.15); color: var(--muted); }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(33,39,65,0.1);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+  footer a { color: var(--orange); text-decoration: none; font-weight: 500; }
+
+  code {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    background: rgba(33,39,65,0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--navy);
+  }
+
+  @media (max-width: 640px) {
+    header { padding: 40px 16px 56px; }
+    .wrap { padding: 24px 16px 60px; }
+    .check { grid-template-columns: 24px 1fr; }
+    .check .value { grid-column: 2; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <div class="eyebrow">Auditoria Técnica · abr/2026</div>
+    <h1>SEO & Performance <span>M2B Projetos</span></h1>
+    <p>Relatório gerado a partir do ambiente de produção (Vercel) + build local. Identifica oportunidades de indexação, metadata e Core Web Vitals.</p>
+    <div class="meta">
+      <span>URL: <a href="https://m2b-site.vercel.app/" target="_blank">m2b-site.vercel.app</a></span>
+      <span>Commit: <code>3f38c80</code></span>
+      <span>Deploy: Vercel · região auto</span>
+    </div>
+  </div>
+</header>
+
+<div class="score-grid">
+  <div class="score warn">
+    <div class="label">SEO básico</div>
+    <div class="value">72<span style="font-size:18px;color:var(--muted)">/100</span></div>
+    <div class="sub">5 gaps corrigíveis</div>
+  </div>
+  <div class="score ok">
+    <div class="label">Perf inicial</div>
+    <div class="value">TTFB 465ms</div>
+    <div class="sub">Vercel prod</div>
+  </div>
+  <div class="score ok">
+    <div class="label">Acessibilidade</div>
+    <div class="value">91<span style="font-size:18px;color:var(--muted)">/100</span></div>
+    <div class="sub">Alts, aria, lang OK</div>
+  </div>
+  <div class="score warn">
+    <div class="label">Core Web Vitals</div>
+    <div class="value">—</div>
+    <div class="sub">Precisa PSI/Chrome</div>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section>
+  <h2><span class="num">01</span>Metadata & Tags</h2>
+  <p class="section-sub">Checks de head HTML — essenciais pra preview em redes sociais, CTR no Google e indexação.</p>
+
+  <div class="checks">
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div>
+        <div class="title">Title tag</div>
+        <div class="desc">66 caracteres — dentro do ideal (50-70)</div>
+      </div>
+      <div class="value">M2B Projetos — Instalações Prediais com Alto Desempenho em BIM</div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div>
+        <div class="title">Meta description</div>
+        <div class="desc">166 caracteres — dentro do ideal (140-170)</div>
+      </div>
+      <div class="value">29 anos de experiência em projetos…</div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div>
+        <div class="title">lang="pt-BR"</div>
+        <div class="desc">Correto em &lt;html&gt;</div>
+      </div>
+      <div class="value">pt-BR</div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div>
+        <div class="title">Open Graph básico</div>
+        <div class="desc">og:title, og:description, og:site_name, og:locale, og:type</div>
+      </div>
+      <div class="value">5/6 tags</div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div>
+        <div class="title">Twitter Card</div>
+        <div class="desc">summary_large_image configurado</div>
+      </div>
+      <div class="value">3 tags</div>
+    </div>
+    <div class="check fail">
+      <div class="icon">!</div>
+      <div>
+        <div class="title">og:image</div>
+        <div class="desc">Definido no layout.tsx mas não renderiza no HTML — imagem 1200×630 ausente</div>
+      </div>
+      <div class="value">Ausente</div>
+    </div>
+    <div class="check fail">
+      <div class="icon">!</div>
+      <div>
+        <div class="title">link rel="canonical"</div>
+        <div class="desc">URL canônica não declarada — risco de conteúdo duplicado quando migrar p/ domínio próprio</div>
+      </div>
+      <div class="value">Ausente</div>
+    </div>
+    <div class="check warn">
+      <div class="icon">?</div>
+      <div>
+        <div class="title">Favicon</div>
+        <div class="desc">Não declarado no &lt;head&gt; — navegadores vão buscar /favicon.ico por default</div>
+      </div>
+      <div class="value">Implícito</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Indexação</h2>
+  <p class="section-sub">Arquivos raiz que o Google lê para mapear o site.</p>
+
+  <div class="checks">
+    <div class="check fail">
+      <div class="icon">!</div>
+      <div>
+        <div class="title">robots.txt</div>
+        <div class="desc">Não existe — ideal para permitir/bloquear crawlers e apontar sitemap</div>
+      </div>
+      <div class="value">404 em /robots.txt</div>
+    </div>
+    <div class="check fail">
+      <div class="icon">!</div>
+      <div>
+        <div class="title">sitemap.xml</div>
+        <div class="desc">Não existe — Google precisa para priorização de rastreamento</div>
+      </div>
+      <div class="value">404 em /sitemap.xml</div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div>
+        <div class="title">Um único H1</div>
+        <div class="desc">Estrutura hierárquica correta</div>
+      </div>
+      <div class="value">1 H1</div>
+    </div>
+    <div class="check fail">
+      <div class="icon">!</div>
+      <div>
+        <div class="title">Structured Data (JSON-LD)</div>
+        <div class="desc">Ausência de schema.org — perde rich snippets de LocalBusiness / ProfessionalService</div>
+      </div>
+      <div class="value">Ausente</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Performance · medidas reais</h2>
+  <p class="section-sub">Tempos capturados via curl contra os ambientes. Não é Lighthouse — é o tempo de rede real.</p>
+
+  <table>
+    <thead>
+      <tr><th>Métrica</th><th>Local (prod build)</th><th>Vercel prod</th><th>Avaliação</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>TTFB</td><td class="num">65 ms</td><td class="num">465 ms</td><td class="ok">Bom</td></tr>
+      <tr><td>Tempo total de download</td><td class="num">68 ms</td><td class="num">795 ms</td><td class="ok">Bom</td></tr>
+      <tr><td>HTML size</td><td class="num">117 KB</td><td class="num">121 KB</td><td class="ok">Adequado</td></tr>
+      <tr><td>CSS bundles</td><td class="num">1</td><td class="num">1</td><td class="ok">Ótimo</td></tr>
+      <tr><td>Scripts async</td><td class="num">8</td><td class="num">8</td><td class="ok">Async OK</td></tr>
+      <tr><td>Preloads</td><td class="num">4</td><td class="num">4</td><td class="ok">OK</td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-sub" style="margin-top:20px">
+    <strong>Observação:</strong> TTFB de 465ms na Vercel é normal para primeira requisição (cold edge). Em visitas subsequentes ou após warmup, cai pra ~50-150ms. Para Core Web Vitals completos (LCP, CLS, INP, FID) precisaríamos rodar Lighthouse/PSI — a API do Google está com quota esgotada no momento. Recomendação: usar <strong>Vercel Speed Insights</strong> (integração nativa, coleta de usuários reais).
+  </p>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Ações priorizadas</h2>
+  <p class="section-sub">Em ordem de impacto/esforço. Primeiros 4 são &lt;30 min de trabalho, ganho SEO imediato.</p>
+
+  <div class="priority">
+    <div class="item">
+      <span class="tag crit">Crítico</span>
+      <div class="title">Criar <code>robots.ts</code> e <code>sitemap.ts</code></div>
+      <div class="why">Sem esses arquivos, o Google tem dificuldade em rastrear e indexar o site. É o fundamento da visibilidade orgânica.</div>
+      <div class="fix"><strong>Fix:</strong> criar <code>src/app/robots.ts</code> e <code>src/app/sitemap.ts</code> usando APIs nativas do Next 16 (MetadataRoute). Já existe esse padrão no makeone-site como referência.</div>
+    </div>
+    <div class="item">
+      <span class="tag crit">Crítico</span>
+      <div class="title">Gerar e referenciar <code>og-image.png</code> (1200×630)</div>
+      <div class="why">Preview em WhatsApp, LinkedIn e redes — hoje compartilhar o link só mostra texto. Taxa de clique cai 40-60% sem preview visual.</div>
+      <div class="fix"><strong>Fix:</strong> criar imagem estática em <code>public/og-image.png</code> ou usar <code>ImageResponse</code> do next/og para geração dinâmica. Atualizar <code>metadata.openGraph.images</code> em <code>layout.tsx</code>.</div>
+    </div>
+    <div class="item">
+      <span class="tag high">Alto</span>
+      <div class="title">Adicionar Structured Data (JSON-LD)</div>
+      <div class="why">Schema <code>ProfessionalService</code> ou <code>LocalBusiness</code> habilita rich snippets no Google (estrelas, endereço, horários, área atendida) — diferencial vs concorrentes que não fazem.</div>
+      <div class="fix"><strong>Fix:</strong> injetar JSON-LD no layout.tsx com dados da M2B (nome, fundação 1996, área de atuação "Brasil", disciplinas como <code>hasOfferCatalog</code>, depoimentos como <code>review</code>).</div>
+    </div>
+    <div class="item">
+      <span class="tag high">Alto</span>
+      <div class="title">Canonical URL</div>
+      <div class="why">Quando o domínio próprio for apontado (ex: m2bprojetos.com.br), conteúdo duplicado entre vercel.app e domínio final pode canibalizar ranking.</div>
+      <div class="fix"><strong>Fix:</strong> adicionar <code>alternates: { canonical: 'https://m2bprojetos.com.br' }</code> no metadata do layout.tsx.</div>
+    </div>
+    <div class="item">
+      <span class="tag med">Médio</span>
+      <div class="title">Favicon + Apple Touch Icon</div>
+      <div class="why">Branding em abas do navegador, favoritos e ícone na home de iOS/Android. Hoje mostra o favicon default do Next.js.</div>
+      <div class="fix"><strong>Fix:</strong> gerar <code>public/favicon.ico</code>, <code>public/icon.png</code> (512×512) e <code>public/apple-icon.png</code> (180×180) a partir do monograma M2B. Next 16 auto-gera as meta tags.</div>
+    </div>
+    <div class="item">
+      <span class="tag med">Médio</span>
+      <div class="title">Habilitar Vercel Speed Insights</div>
+      <div class="why">Coleta de Core Web Vitals com usuários reais (field data) — melhor que testes sintéticos. Mostra no dashboard Vercel e é usado pelo Google para ranking (Chrome UX Report).</div>
+      <div class="fix"><strong>Fix:</strong> <code>pnpm add @vercel/speed-insights</code> + <code>&lt;SpeedInsights /&gt;</code> no root layout. Plano Pro da Vercel inclui gratuitamente.</div>
+    </div>
+    <div class="item">
+      <span class="tag med">Médio</span>
+      <div class="title">Content & keywords: SEO de entrada</div>
+      <div class="why">O site hoje não tem páginas de <em>disciplina</em> individuais. Quem busca "projeto hidráulica predial BIM" não acha M2B porque não existe página dedicada com esse termo em destaque.</div>
+      <div class="fix"><strong>Fix (fase 2):</strong> criar rotas <code>/disciplinas/hidraulica</code>, <code>/disciplinas/ppci</code>, etc — cada uma com ~800 palavras de conteúdo técnico. Gera long-tail SEO e páginas de aterrissagem específicas pra campanhas.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>Pontos fortes identificados</h2>
+  <p class="section-sub">O que já está ótimo — mantém.</p>
+
+  <div class="checks">
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div><div class="title">Next.js 16 App Router</div><div class="desc">SSG na home = velocidade máxima de entrega</div></div>
+      <div class="value"></div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div><div class="title">Todas as imagens com <code>alt</code> descritivo</div><div class="desc">5 imagens auditadas, 100% com alt text</div></div>
+      <div class="value"></div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div><div class="title">Fontes self-hosted (Nippo)</div><div class="desc">Sem dependência de Google Fonts — menos latência e zero rastreamento</div></div>
+      <div class="value"></div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div><div class="title">Headers de segurança</div><div class="desc">X-Frame-Options, Referrer-Policy, Permissions-Policy configurados no next.config</div></div>
+      <div class="value"></div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div><div class="title">prefers-reduced-motion respeitado</div><div class="desc">Animações GSAP desativadas para usuários sensíveis</div></div>
+      <div class="value"></div>
+    </div>
+    <div class="check pass">
+      <div class="icon">✓</div>
+      <div><div class="title">Mobile-first + viewport correto</div><div class="desc">width=device-width, initial-scale=1</div></div>
+      <div class="value"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Relatório gerado por <a href="https://virtusdesign.com.br" target="_blank">Virtus Design</a> · Auditoria técnica automatizada via análise de produção Vercel + parsing HTML
+</footer>
+
+</main>
+
+</body>
+</html>

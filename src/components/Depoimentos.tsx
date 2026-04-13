@@ -18,15 +18,15 @@ const depoimentos: Depoimento[] = [
   {
     q: (
       <>
-        A equipe da M2B é parceira de longa data. Tem profissionais muito qualificados,{" "}
-        {hl("comprometidos com os prazos pactuados,")} apresentam soluções eficientes e têm
-        bastante interação com as demais disciplinas.
+        Atrás de um grande homem, Marcus Basílio, também há uma {hl("grande Empresa")} — pela
+        estrutura funcional, conhecimento técnico, responsabilidade e qualidade ao conceber,
+        compatibilizar e acompanhar seus projetos em execução.
       </>
     ),
-    a: "Leonardo de Castro Alves",
-    r: "Diretor, AORB Evolução Construtiva",
-    empresa: "AORB",
-    logo: "/depoimentos-logos/aorb.png",
+    a: "Paulo D'Arienzo",
+    r: "Diretor, PAR Gestão",
+    empresa: "PAR Gestão",
+    logo: "/depoimentos-logos/par.png",
   },
   {
     q: (
@@ -36,7 +36,7 @@ const depoimentos: Depoimento[] = [
         assertividade e segurança às nossas obras.
       </>
     ),
-    a: "Dihana Tiemi Kanda",
+    a: "Dihana T. Kanda",
     r: "Gerente de Produto e Projetos, Tapajós Engenharia",
     empresa: "Tapajós Engenharia",
     logo: "/depoimentos-logos/tapajos-v2.png",
@@ -44,15 +44,15 @@ const depoimentos: Depoimento[] = [
   {
     q: (
       <>
-        Atrás de um grande homem, Marcus Basílio, também há uma {hl("grande Empresa")} — pela
-        estrutura funcional, conhecimento técnico, responsabilidade e qualidade ao conceber,
-        compatibilizar e acompanhar seus projetos em execução.
+        A equipe da M2B é parceira de longa data. Tem profissionais muito qualificados,{" "}
+        {hl("comprometidos com os prazos pactuados,")} apresentam soluções eficientes e têm
+        bastante interação com as demais disciplinas.
       </>
     ),
-    a: "Paulo D'Arienzo",
-    r: "Diretor, PAR Gestão / PARARQ",
-    empresa: "PARARQ",
-    logo: "/depoimentos-logos/par.png",
+    a: "Leonardo de Castro Alves",
+    r: "Diretor, AORB Evolução Construtiva",
+    empresa: "AORB",
+    logo: "/depoimentos-logos/aorb.png",
   },
 ];
 
