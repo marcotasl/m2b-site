@@ -22,6 +22,17 @@
     "not dead",
     "not op_mini all"
   ],
+  "engines": {
+    "node": "^20.9.0 || >=22.0.0",
+    "pnpm": "^10"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "unrs-resolver"
+    ]
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
