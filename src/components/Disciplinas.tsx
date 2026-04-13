@@ -1,69 +1,61 @@
-const disciplinas = [
+import {
+  Droplets,
+  Waves,
+  Bath,
+  CloudRain,
+  Flame,
+  ShieldAlert,
+  Thermometer,
+  ClipboardCheck,
+  type LucideIcon,
+} from "lucide-react";
+
+type Disciplina = {
+  t: string;
+  d: string;
+  Icon: LucideIcon;
+};
+
+const disciplinas: Disciplina[] = [
   {
     t: "Hidráulica",
     d: "Redes dimensionadas para eficiência, durabilidade e manutenção simplificada.",
-    icon: (
-      <path d="M8 20 V10 a4 4 0 0 1 4 -4 h8 M20 6 v14 a4 4 0 0 1 -4 4 h-4 a4 4 0 0 1 -4 -4" />
-    ),
+    Icon: Droplets,
   },
   {
     t: "Piscinas",
     d: "Piscinas, espelhos d'água, cascatas, fontes, brinquedos aquáticos, aquecimento e tratamento.",
-    icon: (
-      <>
-        <path d="M4 18 q3 -3 6 0 t6 0 t6 0" />
-        <path d="M4 22 q3 -3 6 0 t6 0 t6 0" />
-        <path d="M8 14 V6 M16 14 V6" />
-      </>
-    ),
+    Icon: Waves,
   },
   {
     t: "Sanitário",
     d: "Sistemas de coleta e esgotamento dimensionados e totalmente inspecionáveis.",
-    icon: (
-      <path d="M6 4 h12 v6 a6 6 0 0 1 -6 6 a6 6 0 0 1 -6 -6 z M12 16 v6 M8 22 h8" />
-    ),
+    Icon: Bath,
   },
   {
     t: "Pluvial",
     d: "Captação, drenagem superficial, de cortinas e de lençol freático para máxima proteção.",
-    icon: (
-      <path d="M12 3 C8 10 6 13 6 16 a6 6 0 0 0 12 0 c0 -3 -2 -6 -6 -13 z" />
-    ),
+    Icon: CloudRain,
   },
   {
     t: "Gás Predial",
     d: "Distribuição segura e normatizada para GLP e Gás Natural.",
-    icon: (
-      <path d="M12 3 c3 5 5 7 5 11 a5 5 0 0 1 -10 0 c0 -2 1 -4 3 -5 c0 2 1 3 2 3 c0 -3 0 -5 0 -9 z" />
-    ),
+    Icon: Flame,
   },
   {
     t: "Prevenção e Combate a Incêndio",
     d: "PPCI e sistemas completos para aprovação no Corpo de Bombeiros e projetos executivos.",
-    icon: (
-      <path d="M12 2 c3 4 6 7 6 12 a6 6 0 0 1 -12 0 c0 -3 2 -5 3 -7 c0 2 1 3 2 3 c1 -3 1 -6 1 -8 z" />
-    ),
+    Icon: ShieldAlert,
   },
   {
     t: "Aquecimento Coletivo",
     d: "Soluções de alto desempenho para sistemas centralizados, direto ou indireto.",
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2 v3 M12 19 v3 M2 12 h3 M19 12 h3 M5 5 l2 2 M17 17 l2 2 M5 19 l2 -2 M17 7 l2 -2" />
-      </>
-    ),
+    Icon: Thermometer,
   },
   {
     t: "Consultoria e Comissionamento",
     d: "Auditorias, testes e validação para garantir o desempenho real dos sistemas.",
-    icon: (
-      <>
-        <path d="M9 12 l2 2 l4 -4" />
-        <circle cx="12" cy="12" r="9" />
-      </>
-    ),
+    Icon: ClipboardCheck,
   },
 ];
 
@@ -81,26 +73,28 @@ export default function Disciplinas() {
         aria-hidden
       />
       <div className="container-site relative">
-        <div className="max-w-2xl mb-12 lg:mb-16">
+        <div className="max-w-2xl mb-12 lg:mb-16" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Disciplinas</p>
           <h2 className="h2 text-white">
             Soluções completas em <span className="text-orange">instalações prediais</span>.
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {disciplinas.map((d) => (
+        <div data-stagger="true" className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {disciplinas.map(({ t, d, Icon }) => (
             <article
-              key={d.t}
-              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 lg:p-7 hover:border-orange/60 hover:bg-white/[0.05] transition-all"
+              key={t}
+              className="group card-lift rounded-2xl border border-white/10 bg-white/[0.03] p-6 lg:p-7 hover:border-orange/60 hover:bg-white/[0.05]"
             >
-              <div className="w-11 h-11 rounded-xl bg-orange/10 border border-orange/30 flex items-center justify-center text-orange mb-5 group-hover:bg-orange group-hover:text-white transition-colors">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  {d.icon}
-                </svg>
+              <div className="w-11 h-11 rounded-xl bg-orange/10 border border-orange/30 flex items-center justify-center text-orange mb-5 transition-colors group-hover:bg-orange group-hover:text-white group-hover:border-orange">
+                <Icon
+                  size={22}
+                  strokeWidth={1.75}
+                  aria-hidden
+                />
               </div>
-              <h3 className="h3 text-white mb-2.5">{d.t}</h3>
-              <p className="text-white/65 text-[14px] leading-[1.55]">{d.d}</p>
+              <h3 className="h3 text-white mb-2.5">{t}</h3>
+              <p className="text-white/65 text-[14px] leading-[1.55]">{d}</p>
             </article>
           ))}
         </div>

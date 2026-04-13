@@ -47,7 +47,7 @@ export default function Header() {
           ))}
           <a
             href="#contato"
-            className="ml-2 inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-5 py-2.5 text-white text-[14px] font-medium tracking-wide transition-colors"
+            className="btn-primary ml-2 inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-5 py-2.5 text-white text-[14px] font-medium tracking-wide"
           >
             Solicitar Orçamento
           </a>

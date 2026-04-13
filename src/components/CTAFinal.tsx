@@ -14,7 +14,7 @@ export default function CTAFinal() {
       <div className="absolute -bottom-40 -left-40 w-[560px] h-[560px] rounded-full bg-orange/20 blur-[140px] pointer-events-none" aria-hidden />
 
       <div className="container-site relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7" data-anim="fade-up">
           <h2 className="h2 text-white">
             Transforme seu projeto em uma <span className="text-orange">execução segura e eficiente</span>.
           </h2>
@@ -24,7 +24,7 @@ export default function CTAFinal() {
           <div className="mt-9 flex flex-wrap gap-3">
             <a
               href="mailto:contato@m2bprojetos.com.br?subject=Solicita%C3%A7%C3%A3o%20de%20Or%C3%A7amento"
-              className="inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-7 py-3.5 text-white text-[15px] font-medium tracking-wide transition-colors"
+              className="btn-primary group-arrow inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-7 py-3.5 text-white text-[15px] font-medium tracking-wide"
             >
               Solicitar Orçamento
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="ml-2">
@@ -34,7 +34,7 @@ export default function CTAFinal() {
           </div>
         </div>
 
-        <aside className="lg:col-span-5">
+        <aside className="lg:col-span-5" data-anim="scale-in">
           <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm p-7 lg:p-8">
             <div className="eyebrow text-orange mb-4">Nossa história</div>
             <p className="text-white/75 text-[15px] leading-[1.7]">

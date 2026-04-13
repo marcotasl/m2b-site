@@ -8,12 +8,21 @@ import Depoimentos from "@/components/Depoimentos";
 import CTAFinal from "@/components/CTAFinal";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+type Variant = "a" | "b";
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ v?: string }>;
+}) {
+  const { v } = await searchParams;
+  const variant: Variant = v === "b" ? "b" : "a";
+
   return (
     <>
       <Header />
       <main className="flex-1">
-        <Hero />
+        <Hero variant={variant} />
         <Sobre />
         <Disciplinas />
         <Processo />

@@ -23,18 +23,18 @@ export default function Projetos() {
   return (
     <section id="projetos" className="relative py-20 lg:py-28 bg-white">
       <div className="container-site">
-        <div className="max-w-2xl mb-12 lg:mb-16">
+        <div className="max-w-2xl mb-12 lg:mb-16" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Projetos em destaque</p>
           <h2 className="h2 text-navy">
             Obras entregues com <span className="text-orange">eficiência comprovada</span>.
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-5">
+        <div data-stagger="true" className="grid lg:grid-cols-3 gap-5">
           {projetos.map((p) => (
             <article
               key={p.tipo}
-              className="group relative overflow-hidden rounded-2xl bg-navy text-white p-7 lg:p-8 hover:bg-navy-dark transition-colors"
+              className="group card-lift relative overflow-hidden rounded-2xl bg-navy text-white p-7 lg:p-8 hover:bg-navy-dark"
             >
               <div
                 className="absolute inset-0 opacity-[0.07] pointer-events-none group-hover:opacity-[0.1] transition-opacity"

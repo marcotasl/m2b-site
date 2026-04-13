@@ -2,14 +2,17 @@ export default function Sobre() {
   return (
     <section id="sobre" className="relative py-20 lg:py-28 bg-off-white">
       <div className="container-site grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Sobre a M2B</p>
           <h2 className="h2 text-navy">
             Engenharia de instalações que garante <span className="text-orange">resultados</span>.
           </h2>
         </div>
 
-        <div className="lg:col-span-7 space-y-5 body-md text-navy/75">
+        <div
+          data-stagger="true"
+          className="lg:col-span-7 space-y-5 body-md text-navy/75"
+        >
           <p>
             A M2B entrega soluções completas em projetos e consultoria de instalações prediais, atuando em sistemas <strong className="text-navy font-medium">hidráulicos, piscinas, sanitários, pluviais, gás predial, aquecimento coletivo e prevenção e combate a incêndio</strong>.
           </p>

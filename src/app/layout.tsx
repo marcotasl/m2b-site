@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ScrollAnimations from "@/components/ScrollAnimations";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="antialiased">
       <body className="min-h-full flex flex-col overflow-x-hidden bg-white text-navy">
+        <ScrollAnimations />
         {children}
       </body>
     </html>
