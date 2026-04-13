@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 const links = [
   { href: "#sobre", label: "Sobre" },
@@ -154,7 +155,9 @@ export default function Header() {
             ))}
 
             <a
-              href="#contato"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener"
               onClick={() => setOpen(false)}
               className="btn-primary group-arrow mt-8 inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-7 py-4 text-white text-[15px] font-medium tracking-wide"
               style={{

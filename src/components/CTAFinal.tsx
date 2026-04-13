@@ -1,4 +1,5 @@
 import FlowLines from "./FlowLines";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 export default function CTAFinal() {
   return (
@@ -29,7 +30,9 @@ export default function CTAFinal() {
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
             <a
-              href="mailto:marcus@m2bprojetos.com.br?subject=Solicita%C3%A7%C3%A3o%20de%20Or%C3%A7amento"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener"
               className="btn-primary group-arrow inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-7 py-3.5 text-white text-[15px] font-medium tracking-wide"
             >
               Solicitar Orçamento

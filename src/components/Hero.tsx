@@ -1,5 +1,6 @@
 import Image from "next/image";
 import FlowLines from "./FlowLines";
+import { WHATSAPP_URL } from "@/lib/contact";
 
 type Variant = "a" | "b";
 
@@ -67,7 +68,9 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
 
           <div data-anim="fade-up" className="mt-9 flex flex-wrap gap-3">
             <a
-              href="#contato"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener"
               className="btn-primary group-arrow inline-flex items-center justify-center rounded-full bg-orange hover:bg-orange-bright px-7 py-3.5 text-white text-[15px] font-medium tracking-wide"
             >
               Solicitar Orçamento
