@@ -23,7 +23,7 @@ export default function Depoimentos() {
         <div className="max-w-2xl mb-12 lg:mb-16" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Depoimentos</p>
           <h2 className="h2 text-navy">
-            O que dizem quem trabalha com a <span className="text-orange">M2B</span>.
+            O que dizem quem trabalha com a <span className="text-orange">M2B.</span>
           </h2>
         </div>
 

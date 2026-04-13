@@ -76,7 +76,7 @@ export default function Disciplinas() {
         <div className="max-w-2xl mb-12 lg:mb-16" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Disciplinas</p>
           <h2 className="h2 text-white">
-            Soluções completas em <span className="text-orange">instalações prediais</span>.
+            Soluções completas em <span className="text-orange">instalações prediais.</span>
           </h2>
         </div>
 

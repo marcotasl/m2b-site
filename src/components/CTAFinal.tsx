@@ -16,7 +16,7 @@ export default function CTAFinal() {
       <div className="container-site relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         <div className="lg:col-span-7" data-anim="fade-up">
           <h2 className="h2 text-white">
-            Transforme seu projeto em uma <span className="text-orange">execução segura e eficiente</span>.
+            Transforme seu projeto em uma <span className="text-orange">execução segura e eficiente.</span>
           </h2>
           <p className="lead mt-7 text-white/75 max-w-2xl">
             Entre em contato com nossos engenheiros e descubra como um projeto 100% BIM pode reduzir custos, prazos e riscos na sua obra.

@@ -5,7 +5,7 @@ export default function Sobre() {
         <div className="lg:col-span-5" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Sobre a M2B</p>
           <h2 className="h2 text-navy">
-            Engenharia de instalações que garante <span className="text-orange">resultados</span>.
+            Engenharia de instalações que garante <span className="text-orange">resultados.</span>
           </h2>
         </div>
 

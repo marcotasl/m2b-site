@@ -28,7 +28,7 @@ export default function Processo() {
         <div className="max-w-2xl mb-12 lg:mb-16" data-anim="fade-up">
           <p className="eyebrow text-orange mb-5">Como trabalhamos</p>
           <h2 className="h2 text-navy">
-            Um processo técnico, previsível e <span className="text-orange">sem retrabalho</span>.
+            Um processo técnico, previsível e <span className="text-orange">sem retrabalho.</span>
           </h2>
         </div>
 
