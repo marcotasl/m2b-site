@@ -41,10 +41,10 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
           aria-hidden
         />
         <FlowLines
-          className="absolute inset-0 w-full h-full text-white/25 mix-blend-screen"
+          className="absolute inset-0 w-full h-full text-white/30"
           speed={18}
-          pipeOpacity={0.03}
-          flowOpacity={0.18}
+          pipeOpacity={0.04}
+          flowOpacity={0.22}
         />
       </div>
 
