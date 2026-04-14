@@ -20,7 +20,7 @@ export default function Sobre() {
             Todos os projetos são desenvolvidos <strong className="text-navy font-medium">100% em plataforma BIM</strong>, permitindo compatibilização precisa entre disciplinas, detecção antecipada de interferências e economia de tempo e recursos.
           </p>
           <p>
-            Com uma equipe técnica sênior e mais de 30 anos de atuação, unimos conhecimento prático, domínio normativo e tecnologia de ponta para garantir obras seguras, eficientes e dentro do prazo através de soluções de projetos completas.
+            Com uma equipe técnica sênior e mais de 30 anos de atuação, unimos conhecimento prático, domínio normativo e tecnologia de ponta para garantir projetos seguros, eficientes e dentro do prazo através de soluções de projetos completas.
           </p>
         </div>
       </div>

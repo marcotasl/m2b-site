@@ -58,9 +58,9 @@ export default function Projetos() {
     <section id="projetos" className="relative py-20 lg:py-28 bg-white">
       <div className="container-site">
         <div className="max-w-2xl mb-12 lg:mb-16" data-anim="fade-up">
-          <p className="eyebrow text-orange mb-5">Obras em destaque</p>
+          <p className="eyebrow text-orange mb-5">Projetos em destaque</p>
           <h2 className="h2 text-navy">
-            Obras entregues com <span className="text-orange">eficiência comprovada.</span>
+            Projetos entregues com <span className="text-orange">eficiência comprovada.</span>
           </h2>
         </div>
 

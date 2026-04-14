@@ -33,7 +33,7 @@ const depoimentos: Depoimento[] = [
       <>
         Quase 10 anos de parceria com a M2B e é notável a evolução e melhoria contínua. A{" "}
         {hl("integração técnica dos projetos em BIM")} agrega muito valor, trazendo maior
-        assertividade e segurança às nossas obras.
+        assertividade e segurança aos nossos projetos.
       </>
     ),
     a: "Dihana T. Kanda",

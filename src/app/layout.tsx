@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: "M2B Projetos — Instalações Prediais com Alto Desempenho em BIM",
     description:
-      "Projetos 100% BIM para obras seguras, eficientes e sem retrabalho. 30 anos de atuação.",
+      "Projetos 100% BIM: seguros, eficientes e sem retrabalho. 30 anos de atuação.",
   },
   twitter: {
     card: "summary_large_image",
     title: "M2B Projetos",
     description:
-      "Projetos 100% BIM para obras seguras, eficientes e sem retrabalho.",
+      "Projetos 100% BIM: seguros, eficientes e sem retrabalho.",
   },
   robots: {
     index: true,

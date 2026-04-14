@@ -66,7 +66,7 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
           </h1>
 
           <p data-anim="fade-up" className="lead mt-7 text-white/80 max-w-2xl">
-            30 anos de atuação e com total experiência na tecnologia <strong className="text-white font-medium">BIM</strong> para entregar obras seguras, eficientes e sem retrabalho.
+            30 anos de atuação e com total experiência na tecnologia <strong className="text-white font-medium">BIM</strong> para entregar projetos seguros, eficientes e sem retrabalho.
           </p>
 
           <div data-anim="fade-up" className="mt-9 flex flex-wrap gap-3">
