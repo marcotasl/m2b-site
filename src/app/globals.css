@@ -213,6 +213,53 @@ body {
 }
 .reveal { animation: fade-up 0.7s ease-out both; }
 
+/*
+ * Scroll reveal via IntersectionObserver.
+ * Escopo em `html.anim-ready` pra evitar FOUC/invisível se JS falhar:
+ *   sem JS → conteúdo visível normalmente.
+ *   com JS → classe anim-ready é setada antes do paint (script inline no body),
+ *            elementos iniciam escondidos e recebem .is-visible ao entrar na viewport.
+ */
+html.anim-ready [data-anim] {
+  opacity: 0;
+  transition:
+    opacity 0.55s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html.anim-ready [data-anim="fade-up"]   { transform: translateY(16px); }
+html.anim-ready [data-anim="scale-in"]  { transform: scale(0.97); }
+html.anim-ready [data-anim].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger — filhos entram em cascata via --i (setado por JS no mount) */
+html.anim-ready [data-stagger="true"] > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 70ms),
+    transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 70ms);
+}
+html.anim-ready [data-stagger="true"].is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Mobile: animação mais curta e translates menores pra não parecer "travando" */
+@media (max-width: 767px) {
+  html.anim-ready [data-anim] {
+    transition-duration: 0.35s;
+  }
+  html.anim-ready [data-anim="fade-up"] { transform: translateY(8px); }
+  html.anim-ready [data-stagger="true"] > * {
+    transform: translateY(6px);
+    transition:
+      opacity 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 40ms),
+      transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i, 0) * 40ms);
+  }
+}
+
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -312,6 +359,10 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+  html.anim-ready [data-anim],
+  html.anim-ready [data-stagger="true"] > * {
+    transform: none !important;
   }
 }
 
