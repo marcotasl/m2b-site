@@ -31,17 +31,26 @@ export default function ScrollAnimations() {
     ).matches;
 
     const CLEAR = "opacity,transform,y,scale,willChange";
-    // Threshold mais generoso em mobile — viewports menores fazem 85% cair muito baixo
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
-    const startPos = isMobile ? "top 95%" : "top 88%";
+
+    // Mobile: triggers antecipados + animações mais curtas pra não parecer "travado"
+    const startPos = isMobile ? "top 100%" : "top 88%";
+    const earlyStart = isMobile ? "top 100%" : "top 90%";
+    const dFadeUp = isMobile ? 0.45 : 0.8;
+    const dFadeIn = isMobile ? 0.5 : 0.9;
+    const dScale = isMobile ? 0.45 : 0.8;
+    const dStagger = isMobile ? 0.35 : 0.6;
+    const staggerDelay = isMobile ? 0.05 : 0.08;
+    const yDist = isMobile ? 14 : 24;
+    const yDistStagger = isMobile ? 12 : 20;
 
     const ctx = gsap.context(() => {
       // Fade-up
       gsap.utils.toArray<HTMLElement>("[data-anim='fade-up']").forEach((el) => {
         gsap.from(el, {
           opacity: 0,
-          y: prefersReducedMotion ? 0 : 24,
-          duration: 0.8,
+          y: prefersReducedMotion ? 0 : yDist,
+          duration: dFadeUp,
           ease: "power3.out",
           clearProps: CLEAR,
           scrollTrigger: {
@@ -57,12 +66,12 @@ export default function ScrollAnimations() {
       gsap.utils.toArray<HTMLElement>("[data-anim='fade-in']").forEach((el) => {
         gsap.from(el, {
           opacity: 0,
-          duration: 0.9,
+          duration: dFadeIn,
           ease: "power2.out",
           clearProps: CLEAR,
           scrollTrigger: {
             trigger: el,
-            start: isMobile ? "top 98%" : "top 90%",
+            start: earlyStart,
             toggleActions: "play none none none",
             invalidateOnRefresh: true,
           },
@@ -74,7 +83,7 @@ export default function ScrollAnimations() {
         gsap.from(el, {
           opacity: 0,
           scale: prefersReducedMotion ? 1 : 0.96,
-          duration: 0.8,
+          duration: dScale,
           ease: "power3.out",
           clearProps: CLEAR,
           scrollTrigger: {
@@ -98,19 +107,19 @@ export default function ScrollAnimations() {
         // Set estado inicial imediato pra evitar flash
         gsap.set(children, {
           opacity: 0,
-          y: prefersReducedMotion ? 0 : 20,
+          y: prefersReducedMotion ? 0 : yDistStagger,
         });
 
         ScrollTrigger.batch(children, {
-          start: isMobile ? "top 98%" : "top 90%",
+          start: earlyStart,
           once: true,
           onEnter: (batch) => {
             gsap.to(batch, {
               opacity: 1,
               y: 0,
-              duration: 0.6,
+              duration: dStagger,
               ease: "power3.out",
-              stagger: 0.08,
+              stagger: staggerDelay,
               clearProps: CLEAR,
             });
           },
@@ -142,14 +151,14 @@ export default function ScrollAnimations() {
         const state = { val: 0 };
         gsap.to(state, {
           val: end,
-          duration: 1.4,
+          duration: isMobile ? 1.0 : 1.4,
           ease: "power2.out",
           onUpdate: () => {
             el.textContent = prefix + Math.round(state.val) + suffix;
           },
           scrollTrigger: {
             trigger: el,
-            start: isMobile ? "top 98%" : "top 90%",
+            start: earlyStart,
             toggleActions: "play none none none",
           },
         });
@@ -192,19 +201,23 @@ export default function ScrollAnimations() {
     window.addEventListener("orientationchange", onOrientation);
 
     // Safety net: se por qualquer motivo GSAP não conseguir aplicar,
-    // remover opacity:0 depois de 2s pra nada ficar invisível "travado"
-    const safetyTimer = window.setTimeout(() => {
-      document
-        .querySelectorAll<HTMLElement>(
-          "[data-anim], [data-stagger='true'] > *",
-        )
-        .forEach((el) => {
-          if (getComputedStyle(el).opacity === "0") {
-            el.style.opacity = "1";
-            el.style.transform = "none";
-          }
-        });
-    }, 2500);
+    // remover opacity:0 pra nada ficar invisível "travado".
+    // Mobile mais agressivo (1s) pra cobrir casos de jank/GC do Safari iOS.
+    const safetyTimer = window.setTimeout(
+      () => {
+        document
+          .querySelectorAll<HTMLElement>(
+            "[data-anim], [data-stagger='true'] > *",
+          )
+          .forEach((el) => {
+            if (getComputedStyle(el).opacity === "0") {
+              el.style.opacity = "1";
+              el.style.transform = "none";
+            }
+          });
+      },
+      isMobile ? 1000 : 2000,
+    );
 
     return () => {
       ctx.revert();
