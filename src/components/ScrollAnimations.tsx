@@ -17,6 +17,8 @@ ScrollTrigger.config({ ignoreMobileResize: true });
  *   [data-stagger="true"]        → filhos diretos entram em cascata
  *   [data-parallax="0.2"]        → parallax no scroll
  *   [data-count-to="29"]         → conta até o valor na viewport
+ *   [data-count-prefix="+"]      → prefixo opcional no count-up
+ *   [data-count-suffix="%"]      → sufixo opcional no count-up
  *   [data-hero-zoom="true"]      → ken burns no background do hero
  *
  * Todas animações de entrada limpam inline styles ao fim (clearProps).
@@ -136,13 +138,14 @@ export default function ScrollAnimations() {
       gsap.utils.toArray<HTMLElement>("[data-count-to]").forEach((el) => {
         const end = parseFloat(el.dataset.countTo ?? "0");
         const suffix = el.dataset.countSuffix ?? "";
+        const prefix = el.dataset.countPrefix ?? "";
         const state = { val: 0 };
         gsap.to(state, {
           val: end,
           duration: 1.4,
           ease: "power2.out",
           onUpdate: () => {
-            el.textContent = Math.round(state.val) + suffix;
+            el.textContent = prefix + Math.round(state.val) + suffix;
           },
           scrollTrigger: {
             trigger: el,

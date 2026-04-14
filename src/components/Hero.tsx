@@ -96,23 +96,24 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
         {/* Stats com stagger + count-up */}
         <div
           data-stagger="true"
-          className="mt-16 lg:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-white/15 pt-10"
+          className="mt-16 lg:mt-20 grid grid-cols-2 lg:grid-cols-5 gap-8 border-t border-white/15 pt-10"
         >
           {[
-            { n: 30, suffix: "", l: "anos de atuação" },
-            { n: 100, suffix: "%", l: "projetos em BIM" },
-            { n: 8, suffix: "", l: "disciplinas integradas" },
-            { n: null, label: "BR", l: "atendimento nacional" },
+            { n: 30, prefix: "", suffix: "", l: "anos de atuação" },
+            { n: 700, prefix: "+", suffix: "", l: "projetos entregues" },
+            { n: 5, prefix: "+", suffix: "M", l: "m² desenvolvidos" },
+            { n: 100, prefix: "", suffix: "%", l: "projetos em BIM" },
+            { n: 8, prefix: "", suffix: "", l: "disciplinas integradas" },
           ].map((s, i) => (
             <div key={i}>
               <div className="stat text-orange">
-                {s.n === null ? (
-                  s.label
-                ) : (
-                  <span data-count-to={s.n} data-count-suffix={s.suffix}>
-                    0{s.suffix}
-                  </span>
-                )}
+                <span
+                  data-count-to={s.n}
+                  data-count-prefix={s.prefix}
+                  data-count-suffix={s.suffix}
+                >
+                  {s.prefix}0{s.suffix}
+                </span>
               </div>
               <div className="mt-2 text-white/70 text-sm">{s.l}</div>
             </div>
