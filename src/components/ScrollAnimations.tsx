@@ -29,26 +29,37 @@ export default function ScrollAnimations() {
         });
       });
 
-    // Reveal observer: adiciona .is-visible quando elemento entra na viewport
+    // Reveal observer: adiciona .is-visible quando elemento entra na viewport.
+    // Usa rAF pra garantir que o estado inicial (opacity:0) pinte ao menos um
+    // frame antes da transição começar — senão o browser mobile otimiza e
+    // descarta a animação.
     const revealObserver = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            revealObserver.unobserve(e.target);
+            const target = e.target;
+            revealObserver.unobserve(target);
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                target.classList.add("is-visible");
+              });
+            });
           }
         }
       },
       {
-        rootMargin: "0px 0px -8% 0px",
-        threshold: 0.05,
+        rootMargin: "0px 0px -5% 0px",
+        threshold: 0,
       },
     );
 
     const revealTargets = document.querySelectorAll<HTMLElement>(
       '[data-anim], [data-stagger="true"]',
     );
-    revealTargets.forEach((el) => revealObserver.observe(el));
+    // Defer o observe pra um frame posterior também, por segurança em Safari iOS
+    requestAnimationFrame(() => {
+      revealTargets.forEach((el) => revealObserver.observe(el));
+    });
 
     // Count-up observer
     const countObserver = new IntersectionObserver(
