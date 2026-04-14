@@ -103,6 +103,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="antialiased">
       <body className="min-h-full flex flex-col overflow-x-hidden bg-white text-navy">
+        {/* Marca html.anim-ready antes do primeiro paint pra evitar flash.
+            Sem JS → classe não é adicionada, conteúdo fica visível. */}
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('anim-ready')",
+          }}
+        />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger

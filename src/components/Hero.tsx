@@ -14,7 +14,7 @@ export default function Hero({ variant = "a" }: { variant?: Variant }) {
     >
       {/* Imagem de fundo com Ken Burns + parallax */}
       <div className="absolute inset-0 overflow-hidden">
-        <div data-hero-zoom="true" className="absolute inset-0">
+        <div className="absolute inset-0 animate-hero-zoom">
           <Image
             src={heroSrc}
             alt="Obra em construção com sobreposição BIM das instalações prediais"
